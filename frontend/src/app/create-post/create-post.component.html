@@ -1,0 +1,19 @@
+<div id="postContainer">
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Create Post</mat-card-title>
+        <mat-card-subtitle>Share Image, Text, </mat-card-subtitle>
+      </mat-card-header>
+      <mat-form-field>
+          <mat-label>Tell Us a Story</mat-label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+  <mat-card-actions>
+    <button style="background-color: aliceblue;" mat-button>POST</button>
+  </mat-card-actions>
+</mat-card>
+</div>

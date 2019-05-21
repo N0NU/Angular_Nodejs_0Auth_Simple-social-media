@@ -1,0 +1,26 @@
+.mat-card-header {
+    background: linear-gradient(60deg,#26c6da,#00acc1);
+    border-radius: inherit;
+    padding-top: 5%;
+}
+
+.mat-card-content{
+    margin-top: 19px;
+    padding: 5%;
+}
+
+.mat-card{
+    background: aliceblue;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.mat-card-actions {
+    padding: 0 5%;
+    margin: 0;
+}
+
+.mat-card>.mat-card-actions:last-child {
+    margin-bottom: 0;
+    padding-bottom: 5%;
+}

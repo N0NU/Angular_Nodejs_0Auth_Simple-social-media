@@ -1,0 +1,22 @@
+.mat-card{
+    width: 50%;
+    background-color: transparent;
+}
+
+#postContainer{
+  height: 20%;
+  width: auto;
+  background-color: darkseagreen;
+  padding: 5% 5% 5% 36%;
+  border-bottom: 5px solid black;
+}
+
+.mat-form-field{
+  width: 90%;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+
