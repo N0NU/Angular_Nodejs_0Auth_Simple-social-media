@@ -2,6 +2,7 @@ const postModel = require('../models/post.model');
 
 
 exports.createPost = (req, res)=>{
+    req.body.postBy = req.params.id
     var post = new postModel(req.body);
     post.save().then(data=>{
             res.send(data);

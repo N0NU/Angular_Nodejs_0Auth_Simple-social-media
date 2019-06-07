@@ -4,7 +4,7 @@ let commentController = require('../controller/commentController');
 
 let router = express.Router();
 
-router.post('/createpost', postController.createPost);
+router.post('/createpost/:id', postController.createPost);
 router.put('/updatepost', postController.updatePost);
 router.get('/getposts', postController.getPosts);
 router.delete('/deletepost', postController.deletePost);

@@ -1,19 +1,18 @@
 <div id="postContainer">
-<mat-card>
+  <mat-card>
     <mat-card-header>
-        <mat-card-title>Create Post</mat-card-title>
-        <mat-card-subtitle>Share Image, Text, </mat-card-subtitle>
-      </mat-card-header>
-      <mat-form-field>
-          <mat-label>Tell Us a Story</mat-label>
-          <textarea matInput
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    cdkAutosizeMaxRows="5"></textarea>
-        </mat-form-field>
-  <mat-card-actions>
-    <button style="background-color: aliceblue;" mat-button>POST</button>
-  </mat-card-actions>
-</mat-card>
+      <mat-card-title>Create Post</mat-card-title>
+      <mat-card-subtitle>Share Image, Text, </mat-card-subtitle>
+    </mat-card-header>
+    <form [formGroup]="postForm">
+    <mat-form-field>
+      <mat-label>Tell Us a Story</mat-label>
+      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="5" formControlName="content" formControlName = "content"></textarea>
+    </mat-form-field>
+      <input type="file" multiple (change)="onFileSelect($event)" formControlName="images" />
+
+      <button (click)="postFormSubmit(postForm)" style="background-color: aliceblue;" mat-button>POST</button>
+    </form>
+  </mat-card>
 </div>

@@ -1,4 +1,5 @@
-let userModel = require('../models/user.model');
+const userModel = require('../models/user.model');
+const mongoose = require('mongoose')
 
 
 exports.createUser = (req, res)=>{
@@ -7,8 +8,12 @@ exports.createUser = (req, res)=>{
         res.status(200).send(data);
     })
     .catch(err=>{
-        res.status(500).send({
-            message: err.message || "Some Error Occurred"
+        userModel.findOne({id:  req.body.id}, (err, user)=>{
+            if(user){
+                res.status(200).send(user)
+            } else {
+                console.log(err)
+            }
         })
     })
 }

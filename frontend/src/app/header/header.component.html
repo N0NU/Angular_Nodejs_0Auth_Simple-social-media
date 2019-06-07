@@ -1,11 +1,10 @@
 <mat-toolbar class="mat-elevation-z6">
 
   <mat-toolbar-row>
-
-    <button mat-icon-button (click)="toggleSidenav.emit()">
-      <mat-icon>menu</mat-icon>
-    </button>
-
+    <div class="heading">
+      <p *ngIf="!auth.isLoggedIn">Login Using Google</p>
+      <p *ngIf="auth.isLoggedIn">Home</p>
+    </div>
     <!-- <span> {{ 'APP_TOOLBAR_TITLE' | translate }} </span> -->
 
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
@@ -24,7 +23,7 @@
           </button>
         </li>
 
-        <li>
+        <li *ngIf="auth.isLoggedIn">
           <button mat-icon-button [matMenuTriggerFor]="auth">
             <mat-icon>person_outline</mat-icon>
           </button>

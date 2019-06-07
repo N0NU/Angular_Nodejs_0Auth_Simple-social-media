@@ -1,15 +1,16 @@
-
-
 <mat-list role="list">
     <mat-list-item role="listitem" *ngFor="let post of posts">
-        <mat-card >
+        <mat-card *ngIf="post">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>{{post.postBy.name}}</mat-card-title>
+              <mat-card-title *ngIf="post.postBy">{{post.postBy.name}}</mat-card-title>
               <mat-card-subtitle>{{post.updatedAt | date: 'dd/MM/yyyy hh:mm:ss'}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-              <p>
+              <div *ngIf="post.images">
+                <img height="350px" *ngFor = "let image of post.images" src="../../assets/{{image}}" alt="">
+              </div>
+                <p>
                 {{post.postContent}}
               </p>
             </mat-card-content>

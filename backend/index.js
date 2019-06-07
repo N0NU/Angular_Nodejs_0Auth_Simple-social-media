@@ -36,38 +36,29 @@ app.listen(port, () => {
 });
 
 
-app.get('/main', (req, res) => {
-    if (req.session.token) {
-        res.cookie('token', req.session.token);
-        res.json({
-            status: true
-        });
-    } else {
-        res.cookie('token', '')
-        res.json({
-            status: false
-        });
-    }
-});
-app.use('/main/post', postsRoute);
+app.use('/main', postsRoute);
+// app.use('/main/post', postsRoute);
 app.use('/user', userRoute);
+
+const imageUpload = require('./controller/imageUploadController')
+app.use('/uploadImage', imageUpload)
 
 
 
 let authConfig = require('./config/passport')
-app.use('/auth', authConfig)
+// app.use('/auth', authConfig)
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        failureRedirect: '/failed'
+        scope: ['https://mail.google.com/'] // Used to specify the required data
     }),
     (req, res) => {
-        console.log(req.user.token);
         req.session.token = req.user.token;
-        res.redirect('/main');
+        console.log(req.user, 'res')
+        res.status(200).send({auth: true, token: req.user.token});
     }
 );
 
-app.get('/failed', ()=>{
-    console.log('login Failed')
+app.get('/failed', (req, res)=>{
+    res.status(404).send({auth: false, token: null});
 })

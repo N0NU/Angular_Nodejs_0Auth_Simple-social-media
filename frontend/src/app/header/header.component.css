@@ -1,4 +1,4 @@
-.mat-toolbar-multiple-rows {
+.mat-toolbar-row {
   background: black;
   position: relative;
 }
@@ -9,4 +9,8 @@
 
 .mat-icon-button{
   background-color: aliceblue;
+}
+
+.heading{
+  color: whitesmoke
 }

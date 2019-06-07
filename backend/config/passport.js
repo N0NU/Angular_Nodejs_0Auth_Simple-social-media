@@ -48,12 +48,15 @@ function isUserAuthenticated(req, res, next) {
 
 
 // passport.authenticate middleware is used here to authenticate the request
-router.get('/google', passport.authenticate('google', {
-    scope: [' profile'] // Used to specify the required data
-}));
+app.get('/google/callback', passport.authenticate('google', {
+    scope: ['https://mail.google.com/'] // Used to specify the required data
+}), (req, res) => {
+    console.log(res.user, 'res')
+    res.status(200).send({auth: true, token: req.user.token});
+});
 
 // The middleware receives the data from Google and runs the function on Strategy config
-// app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
+// app.get('/google', passport.authenticate('google'), (req, res) => {
 //     console.log(res, 'res')
 // });
 
@@ -63,12 +66,13 @@ app.get('/secret', isUserAuthenticated, (req, res) => {
 });
 
 // Logout route
-app.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
+    console.log('log')
     req.logout();
     req.session = null;
-    res.redirect('/');
+    res.redirect('http://localhost:5200/');
 });
 
 
 
-module.exports = router;
+module.exports = app;

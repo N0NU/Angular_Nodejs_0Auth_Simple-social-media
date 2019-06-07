@@ -15,9 +15,7 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   googleAuth(){
-    this.userService.googleAuth().subscribe(res=>{
-      console.log(res, 'res');
-    })
+    this.userService.login()
   }
 
 }

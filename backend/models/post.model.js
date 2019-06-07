@@ -5,6 +5,7 @@ let post = new mongoose.Schema({
     updatedAt: {type: Date, default: Date("<YYYY-mm-ddTHH:MM:ss>")},
     postBy: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
     postContent: String,
+    images: [{type: String, default: null}],
     postComments: [{type: mongoose.Schema.Types.ObjectId, ref: 'comments'}]
 
 })

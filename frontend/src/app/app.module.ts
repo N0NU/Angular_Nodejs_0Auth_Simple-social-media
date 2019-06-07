@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreatePostComponent } from './create-post/create-post.component';
@@ -24,7 +24,8 @@ import { UserServiceService } from './services/user-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {TextFieldModule} from '@angular/cdk/text-field';
-import { CommentDialogComponent } from './comment-dialog/comment-dialog.component'
+import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
+import { CallbackComponent } from './callback/callback.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CommentDialogComponent } from './comment-dialog/comment-dialog.componen
     DashboardComponent,
     PostListComponent,
     UserRegistrationComponent,
-    CommentDialogComponent
+    CommentDialogComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { CommentDialogComponent } from './comment-dialog/comment-dialog.componen
     FlexLayoutModule,
     MatInputModule,
     MatFormFieldModule,
-    TextFieldModule
+    TextFieldModule,
+    ReactiveFormsModule
   ],
   entryComponents:[CommentDialogComponent],
   providers: [UserServiceService],
