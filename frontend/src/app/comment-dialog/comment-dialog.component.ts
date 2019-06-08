@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PostServiceService } from '../services/post-service.service';
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-comment-dialog',
@@ -8,11 +10,27 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 })
 export class CommentDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data) {}
+  constructor(private route: ActivatedRoute, private postService: PostServiceService, private userService: UserServiceService) {}
 post;
   ngOnInit() {
-    this.post = this.data.post;
-    console.log(this.post)
+    this.getPost()
+  }
+
+  getPost(){
+    let id = this.route.snapshot.paramMap.get('id');
+    this.postService.getPost(id).subscribe(res => {this.post = res; console.log(this.post)})
+
+  }
+
+  async addComment(comment){
+    await this.userService.getCurrentUser()
+    var commentData = {
+      commentBy: this.userService.currentUser._id,
+    commentContent: comment.value,
+    }
+    console.log(commentData)
+    
+    
   }
 
 }

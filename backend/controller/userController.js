@@ -1,6 +1,4 @@
 const userModel = require('../models/user.model');
-const mongoose = require('mongoose')
-
 
 exports.createUser = (req, res)=>{
     var user = new userModel(req.body);
@@ -15,5 +13,17 @@ exports.createUser = (req, res)=>{
                 console.log(err)
             }
         })
+    })
+}
+
+exports.getUser = (req, res) => {
+    userModel.findOne({id: req.params.id}, (err, user) => {
+        if(user){
+            res.status(200).send(user)
+        } else {
+            res.send({
+                message: 'User Not Found'
+            })
+        }
     })
 }

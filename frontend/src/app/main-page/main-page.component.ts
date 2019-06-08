@@ -18,12 +18,14 @@ export class MainPageComponent implements OnInit {
   }
   ngOnInit() {
     this.user = this.auth.idTokenPayload
-    if (this.user) {
+    if (this.user != undefined) {
       this.profile.name = this.user.name
-      this.profile.id = this.user.sub
+      this.profile.id = this.user.sub.replace("google-oauth2|", "");
       this.profile.image = this.user.picture
+      this.auth.addUser(this.profile)
     }
-    this.auth.addUser(this.profile)
+
+    this.auth.getCurrentUser()
 
   }
 

@@ -1,10 +1,10 @@
 .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
     height: auto;
-    padding: .5rem;
+    margin-top: 1rem
 }
 
 .mat-card-header {
-    background: linear-gradient(60deg,#26c6da,#00acc1);
+    color: cornflowerblue;
     border-radius: inherit;
     padding-top: 5%;
 }
@@ -18,6 +18,7 @@
     background: aliceblue;
     padding: 0;
     border-radius: 5px;
+    width: 39%;
 }
 
 .mat-card-actions {
@@ -31,5 +32,12 @@
 }
 
 .imageBox{
-    width: min-content
+    width: min-content;
+}
+
+.mat-list-base{
+background: #283048;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }

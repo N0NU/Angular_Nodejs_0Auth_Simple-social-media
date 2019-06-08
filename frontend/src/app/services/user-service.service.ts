@@ -32,8 +32,21 @@ export class UserServiceService {
     this.expiresAt = 0;
   }
 
+  getCurrentUser(){
+    if(localStorage.getItem('id')){
+      return new Promise((resolve, reject) => {
+        this.http.get(environment.api + '/user/currentuser/' + localStorage.getItem('id')).subscribe(res => {
+        this.currentUser = res
+      resolve(true);
+      })
+    })
+    }
+  }
+
   addUser(data) {
-     this.http.post(environment.api + '/user/createuser', data).subscribe(res=>{this.currentUser = res})
+     this.http.post(environment.api + '/user/createuser', data).subscribe(res=>{this.currentUser = res
+    console.log(res, 'curr')
+    })
   }
 
   public login() {
@@ -60,8 +73,9 @@ export class UserServiceService {
     this.accessToken = authResult.accessToken;
     this.authenticated = true;
     this.idTokenPayload = authResult.idTokenPayload
-    let token = {token: this.accessToken, expiresIn: this.expiresAt, authenticated: this.authenticated}
+    console.log(this.accessToken, this.expiresAt, 'session')
     localStorage.setItem('token', this.accessToken)
+    localStorage.setItem('id', authResult.idTokenPayload.sub.replace("google-oauth2|", ""))
     localStorage.setItem('expiresAt', JSON.stringify(this.expiresAt))
     
   }
@@ -70,16 +84,15 @@ export class UserServiceService {
   // Ensure that returnTo URL is specified in Auth0
   // Application settings for Allowed Logout URLs
   public logout(): void {
-    this.auth0.logout({
-      returnTo: 'http://localhost:4200',
-      clientID: 'w0VyFQz1xWv4cSQ6WtIbwvrYsHF3lA3t'
-    });
+    localStorage.removeItem('expiresAt')
+    localStorage.removeItem('token')
+    localStorage.removeItem('id')
+    this.router.navigate(['/register'])
   }
 
   // Checks whether the expiry time for the user's Access Token has passed and that user is signed in locally.
   get isLoggedIn(): boolean {
-    console.log(parseInt(localStorage.getItem('expiresAt')))
-    return Date.now() < parseInt(localStorage.getItem('expiresAt')) && this.authenticated;
+    return Date.now() < parseInt(localStorage.getItem('expiresAt')) && !!localStorage.getItem('token');
   }
 
 }

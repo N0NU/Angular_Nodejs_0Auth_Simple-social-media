@@ -12,13 +12,13 @@ export class CreatePostComponent implements OnInit {
   selectFile;
   images;
   postForm: FormGroup
-  constructor(private postService: PostServiceService, private fb: FormBuilder, private userService: UserServiceService) { 
+  constructor(private postService: PostServiceService, private fb: FormBuilder, private userService: UserServiceService) {
     this.postForm = this.fb.group({
       content: new FormControl(''),
       images: ([])
     })
   }
-  
+
   ngOnInit() {
 
   }
@@ -38,17 +38,21 @@ export class CreatePostComponent implements OnInit {
   postFormSubmit(form) {
     form.value.images = this.images
     let id = this.userService.currentUser._id
-    this.postService.addPost(form.value, id).subscribe(res => {console.log(res, 'res')
-  })
+    console.log(form.value)
+    this.postService.addPost(form.value, id).subscribe(res => {
+    })
     this.uploadImage();
   }
 
-  uploadImage(){
+  uploadImage() {
     const fd = new FormData();
-    for (let i = 0; i < this.selectFile.length; i++) {
-      fd.append('images', this.selectFile[i], this.selectFile[i].name);
-    this.postService.uploadImage(fd).subscribe((data) => console.log(data));
+    if (this.selectFile) {
+      for (let i = 0; i < this.selectFile.length; i++) {
+        fd.append('images', this.selectFile[i], this.selectFile[i].name);
+        this.postService.uploadImage(fd).subscribe((data) => console.log(data));
+      }
     }
+
 
   }
 

@@ -17,7 +17,8 @@ import {MatCardModule,
         MatInputModule,
         MatFormFieldModule,
         MatListModule,
-        MatDialogModule} from '@angular/material';
+        MatDialogModule,
+        MatSnackBarModule} from '@angular/material';
 import { PostListComponent } from './post-list/post-list.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { UserServiceService } from './services/user-service.service';
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
-import { CallbackComponent } from './callback/callback.component'
+import { CallbackComponent } from './callback/callback.component';
+import { EditpostDialogComponent } from './post-list/editpost-dialog/editpost-dialog.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { CallbackComponent } from './callback/callback.component'
     PostListComponent,
     UserRegistrationComponent,
     CommentDialogComponent,
-    CallbackComponent
+    CallbackComponent,
+    EditpostDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +60,10 @@ import { CallbackComponent } from './callback/callback.component'
     MatInputModule,
     MatFormFieldModule,
     TextFieldModule,
+    MatSnackBarModule,
     ReactiveFormsModule
   ],
-  entryComponents:[CommentDialogComponent],
+  entryComponents:[EditpostDialogComponent],
   providers: [UserServiceService],
   bootstrap: [AppComponent]
 })

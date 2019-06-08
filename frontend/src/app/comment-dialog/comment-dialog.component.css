@@ -15,6 +15,16 @@
     border-radius: 5px;
 }
 
+.postDetails{
+    padding: 1rem;
+    background: aliceblue;
+}
+
+.commentBox{
+    padding: 5px;
+    background-color: #edf0ff;
+}
+
 .mat-card-actions {
     padding: 0 5%;
     margin: 0;

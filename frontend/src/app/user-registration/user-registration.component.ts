@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../services/user-service.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,9 +10,12 @@ import { UserServiceService } from '../services/user-service.service';
 })
 export class UserRegistrationComponent implements OnInit {
 
-  constructor(private userService: UserServiceService) { }
+  constructor(private userService: UserServiceService, private router: Router) { }
 
   ngOnInit() {
+    if(this.userService.isLoggedIn){
+      this.router.navigate(['/home'])
+    }
   }
 
   googleAuth(){

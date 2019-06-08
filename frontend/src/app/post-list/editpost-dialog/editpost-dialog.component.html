@@ -1,0 +1,23 @@
+<form [formGroup]="postForm">
+  <mat-form-field>
+    <mat-label>Update Your Story</mat-label>
+    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+      cdkAutosizeMaxRows="5" formControlName="content" formControlName = "content"></textarea>
+  </mat-form-field>
+  <br/>
+    <input type="file" multiple (change)="onFileSelect($event)" />
+    <div formArrayName="fImages" *ngFor="let creds of postForm.get('fImages').controls; let i = index">
+      <ng-container [formGroupName]="i">
+          <input type="hidden" placeholder="image" formControlName="image" disabled #ref1>
+          <img src="assets/{{ref1.value}}" width="100px" height="25px"> 
+
+          <button style="position: absolute;" (click)="deleteCreds(i)" type="button">X</button>
+
+      </ng-container>
+  </div>
+
+    <button (click)="updatepost(postForm)" style="background-color: aliceblue;" mat-button>Update</button>
+  </form>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
